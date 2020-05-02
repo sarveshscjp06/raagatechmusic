@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+    <cron>
+        <url>/raagatechmusic</url>
+        <description>raagatechmusicAd</description>
+        <schedule>every friday 17:00</schedule>
+    </cron>
+    <cron>
+        <url>/IndependenceDayJob</url>
+        <description>August 15</description>
+        <schedule>15 of august 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/GandhiJayantiJob</url>
+        <description>October 02</description>
+        <schedule>2 of october 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/ChristmasDayJob</url>
+        <description>December 25</description>
+        <schedule>25 of december 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/NewYearJob</url>
+        <description>January 01</description>
+        <schedule>1 of january 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/RepublicDayJob</url>
+        <description>January 26</description>
+        <schedule>26 of january 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/DiwaliJob</url>
+        <description>Diwali 2018</description>
+        <schedule>7 of november 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/HoliJob</url>
+        <description>Holi 2019</description>
+        <schedule>20 of march 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/RakhiJob</url>
+        <description>Rakhi 2019</description>
+        <schedule>15 of august 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/VijaydashamiJob</url>
+        <description>Vijaydashami 2018</description>
+        <schedule>19 of october 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/EidJob</url>
+        <description>Eid 2019</description>
+        <schedule>11 of august 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/MahaveerJayantiJob</url>
+        <description>MahaveerJayanti 2019</description>
+        <schedule>17 of april 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/BuddhaJayantiJob</url>
+        <description>BuddhaJayanti 2019</description>
+        <schedule>12 of may 06:00</schedule>
+    </cron>
+    <cron>
+        <url>/JanmashtamiJob</url>
+        <description>Janmashtami 2018</description>
+        <schedule>2 of september 06:00</schedule>
+    </cron>
+</cronentries>

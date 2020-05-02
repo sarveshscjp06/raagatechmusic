@@ -1,0 +1,46 @@
+﻿/* blue */
+a:link, a:visited {
+	color: #135cae;
+	text-decoration:underline;
+}
+
+a:hover {
+	color: #0b3768;
+	text-decoration:none;
+}
+
+#pillmenu a:hover {
+  color: #135cae;
+}
+
+#pillmenu a#active_menu-nav {
+  background: url(../images/blue/mw_menu_active_bg.png) repeat-x;
+  color: #fff;
+}
+
+#pillmenu a#active_menu-nav:hover {
+  color: #fff;
+}
+
+h3, .componentheading, table.moduletable th {
+ /* color: #135cae;*/
+}
+
+div.module,
+div.module_menu {
+background:url(../images/ver-menu-bottum.gif) no-repeat left bottom;
+}
+div.module div,
+div.module_menu div {
+}
+
+div.module div div,
+div.module_menu div div {
+background-image:url(../images/ver-menu-top.jpg);
+background-repeat:no-repeat;
+}
+div.module div div div,
+div.module_menu div div div {
+padding-top:20px;
+padding-bottom:25px;
+}

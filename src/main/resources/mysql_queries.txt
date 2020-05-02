@@ -1,0 +1,115 @@
+date:08/03/2019
+alter table samcrm_obm_orders add column discout int;
+alter table samcrm_obm_orders add column couponcode varchar(10);
+date:09/03/2019
+alter table samcrm_obm_orders change `price` total_price double;
+alter table samcrm_obm_orders change `discout` discount double;
+alter table samcrm_obm_address add column recepient varchar(100);
+alter table samcrm_obm_address add column contact_no int null;
+alter table samcrm_obm_orders drop column delivery_time;
+
+date:11/03/2019
+
+create table samcrm_creditpoint (
+id int auto_increment primary key,
+vendor_id int not null,
+customer_id int null,
+order_id int null,
+credit_date date not null,
+debit_date date null,
+credit_reward_points int default 0,
+cash_amount int default 0,
+coupon_code varchar(10) null,
+unit varchar(10) not null,
+Foreign Key vifk (vendor_id) REFERENCES samcrm_individual (individual_id) ON DELETE NO ACTION,
+Foreign Key cifk (customer_id) REFERENCES samcrm_individual (individual_id) ON DELETE NO ACTION,
+Foreign Key oofk (order_id) REFERENCES samcrm_obm_orders (order_id) ON DELETE NO ACTION);
+
+Date: 12/03/2019
+
+drop table samcrm_obm_customer_address;
+
+date: 14/03/2019
+
+insert into samcrm_creditpoint(vendor_id, credit_date, credit_reward_points, coupon_code, unit) values(1, '2019/03/14', 10, 'V1C0O0%10', '%');
+alter table samcrm_obm_orders add column confirmation_date date;
+
+date: 27/03/2019
+
+alter table samcrm_obm_address change `recepient` recepient varchar(200);
+
+date: 28/03/2019
+
+CREATE TABLE samcrm_delivery_status (
+id int auto_increment primary key, 
+order_id int not null, 
+delivery_person_id int, 
+ready_time varchar(10), 
+out_to_time varchar(10),
+delivery_time varchar(10),
+comment_id int,
+feedback_id int,
+Foreign Key oofk (order_id) REFERENCES samcrm_obm_orders (order_id) ON DELETE NO ACTION
+);
+
+CREATE TABLE samcrm_comment_master (
+id int auto_increment primary key, 
+sequence int,
+description varchar(200)
+);
+
+CREATE TABLE samcrm_feedback_master (
+id int auto_increment primary key, 
+sequence int,
+description varchar(200)
+);
+
+INSERT into samcrm_comment_master (sequence, description) VALUES (4, 'good');
+INSERT into samcrm_comment_master (sequence, description) VALUES (5, 'very good');
+INSERT into samcrm_comment_master (sequence, description) VALUES (6, 'better');
+INSERT into samcrm_comment_master (sequence, description) VALUES (7, 'far better');
+INSERT into samcrm_comment_master (sequence, description) VALUES (8, 'best');
+
+INSERT into samcrm_feedback_master (sequence, description) VALUES (9, 'good');
+INSERT into samcrm_feedback_master (sequence, description) VALUES (10, 'very good');
+INSERT into samcrm_feedback_master (sequence, description) VALUES (11, 'better');
+INSERT into samcrm_feedback_master (sequence, description) VALUES (12, 'far better');
+INSERT into samcrm_feedback_master (sequence, description) VALUES (13, 'best');
+
+date: 30/03/2019
+
+alter table samcrm_obm_orders change `delivery_person` delivery_person varchar(100);
+
+date: 31/03/2019
+alter table samcrm_obm_address change `contact_no` contact_no long;
+
+date: 03/04/2019
+ALTER TABLE samcrm_vendor_category_subtype ADD column urgent_contact_no1 long;
+ALTER TABLE samcrm_vendor_category_subtype ADD column urgent_contact_no2 long;
+
+date: 03/06/2019
+CREATE TABLE qr_code(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name varchar(100) NOT NULL,
+mobile INT NOT NULL UNIQUE KEY,
+email varchar(200) NOT NULL UNIQUE KEY,
+details varchar(500) NOT NULL);
+
+alter table qr_code change `mobile` mobile bigint;
+alter table samcrm_vendor_category_subtype add column description varchar(250) NOT NULL;
+alter table samcrm_vendor_category_subtype add column push_message varchar(250) NULL;
+alter table samcrm_vendor_category_subtype add column email_campaign_text varchar(250) NULL;
+alter table samcrm_vendor_category_subtype add column bulk_sms_text varchar(250) NULL;
+
+alter table samcrm_vendor_category_subtype change `logo_name` logo_name varchar(150) NULL;
+alter table samcrm_vendor_category_subtype change `logo_url` logo_url varchar(150) NULL;
+
+alter table samcrm_contact_list add column message varchar(250) NULL;
+alter table samcrm_contact_list add column comment varchar(250) NULL;
+alter table samcrm_contact_list add column name VARCHAR(100) NOT NULL;
+alter table samcrm_contact_list add column email VARCHAR(100) NOT NULL;
+alter table samcrm_contact_list add column zipcode VARCHAR(10) NOT NULL;
+alter table samcrm_contact_list add column country_code INT NOT NULL;
+alter table samcrm_contact_list add column creation_date DATE NOT NULL;
+alter table samcrm_contact_list add column address VARCHAR(200);
+alter table samcrm_contact_list add column date_of_birth DATE;
