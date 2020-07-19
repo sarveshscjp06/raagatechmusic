@@ -14,6 +14,7 @@ import com.raagatech.commons.Utility;
 import com.raagatech.data.source.Constants;
 import com.raagatech.data.source.DatabaseConnection;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -143,28 +144,44 @@ public class RaagatechmusicServlet extends HttpServlet {
         long mobileNo = Long.parseLong(req.getParameter("tel-630"));
         String followupDetails = req.getParameter("textarea-398");
 
-        if (req.getParameter("requestIdentifier") != null && !req.getParameter("requestIdentifier").isEmpty() && !req.getParameter("requestIdentifier").equals("qrform")) {
+        if (req.getParameter("requestIdentifier") != null && !req.getParameter("requestIdentifier").isEmpty() && req.getParameter("requestIdentifier").equals("qrform")) {
             try {
                 QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
                 BitMatrix matrix = qrCodeGenerator.getQRCode(inquiryname, mobileNo, email, followupDetails);
                 String filePath = "D:\\QRCODE\\" + inquiryname + ".png";
                 MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
                         .lastIndexOf('.') + 1), new File(filePath));
-                System.out.println("QR Code image created successfully!");
             } catch (Exception e) {
 
             }
         } else {
+
+            String nationality = req.getParameter("nationality-680");
+            String fname = req.getParameter("fname-680");
+            String mname = req.getParameter("mname-680");
+            String dob = req.getParameter("dob-680");
+            long telOther = 0;
+            if(req.getParameter("telOther-630") != null && !req.getParameter("telOther-630").isEmpty()){
+                telOther = Long.parseLong(req.getParameter("telOther-630"));
+            }
+            String address = req.getParameter("address-398");
+            String image = req.getParameter("passportSizePhoto");
+
+            String gender = req.getParameter("gender-98");
+            String inspiration = req.getParameter("inspiration-465");
+            String comfortability = req.getParameter("comfortability-246");
 
             boolean inquiryStatus = Boolean.FALSE;
             if (Utility.isNotNull(inquiryname) && Utility.isNotNull(email)) {
                 try {
                     int inquiry_id = DatabaseConnection.selectInquiry(email, mobileNo);
                     if (inquiry_id > 0) {
-                        inquiryStatus = DatabaseConnection.updateInquiry(inquiry_id, inquiryname, 1, email, mobileNo, 1, "NA", followupDetails);
+                        inquiryStatus = DatabaseConnection.updateInquiry(inquiry_id, inquiryname, 1, email, mobileNo, 1, address, followupDetails, nationality, fname, mname, dob, telOther, image,
+                                gender, inspiration, comfortability);
                     } else {
                         inquiryStatus = DatabaseConnection.insertInquiry(inquiryname, 1, email, mobileNo,
-                                1, "NA", followupDetails);
+                                1, address, followupDetails, nationality, fname, mname, dob, telOther, image,
+                                gender, inspiration, comfortability);
                     }
                     if (inquiryStatus && !email.equalsIgnoreCase("raksha@raagatech.com")) {
                         EmailUtils.sendGoogleMail(email, inquiryname, followupDetails);

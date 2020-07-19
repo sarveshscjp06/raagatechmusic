@@ -113,3 +113,17 @@ alter table samcrm_contact_list add column country_code INT NOT NULL;
 alter table samcrm_contact_list add column creation_date DATE NOT NULL;
 alter table samcrm_contact_list add column address VARCHAR(200);
 alter table samcrm_contact_list add column date_of_birth DATE;
+
+date: 03/06/2019
+alter table inquiry add column date_of_birth DATE NULL;
+alter table inquiry add column father_name VARCHAR(100) NULL;
+alter table inquiry add column mother_name VARCHAR(100) NULL;
+alter table inquiry add column nationality VARCHAR(50) NULL;
+alter table inquiry add column address VARCHAR(200);
+alter table inquiry add column telephone bigint NULL;
+alter table inquiry add column photo blob NULL;
+alter table inquiry add column gender CHAR(1) NULL;
+alter table inquiry add column inspiration VARCHAR(30) NULL;
+alter table inquiry add column comfortability VARCHAR(30) NULL;
+
+

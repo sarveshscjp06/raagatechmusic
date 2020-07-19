@@ -88,7 +88,8 @@ public class Register {
         if (Utility.isNotNull(inquiryname) && Utility.isNotNull(email)) {
             try {
                 if (DatabaseConnection.insertInquiry(inquiryname, inspirationid, email, mobileNo,
-                        levelid, address, followupDetails)) {
+                        levelid, address, followupDetails, "", "", "", "", 0, "",
+                                "", "", "")) {
                     result = 0;
                     if (!email.equalsIgnoreCase("raksha@raagatech.com")) {
                         EmailUtils.sendGoogleMail(email, inquiryname, followupDetails);
@@ -167,7 +168,8 @@ public class Register {
         if (inquiry_id > 0 && Utility.isNotNull(inquiryname) && Utility.isNotNull(email)) {
             try {
                 if (DatabaseConnection.updateInquiry(inquiry_id, inquiryname, inspirationid, email, mobileNo,
-                        levelid, address, followupDetails)) {
+                        levelid, address, followupDetails, "", "", "", "", 0, "",
+                                "", "", "")) {
                     result = 0;
                 }
                 if (!email.equalsIgnoreCase("raksha@raagatech.com")) {

@@ -23,6 +23,9 @@ import java.util.Date;
 
 import com.raagatech.bean.InquiryBean;
 import com.raagatech.bean.SliderImageBean;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.LinkedHashMap;
 
 /**
@@ -97,17 +100,26 @@ public class DatabaseConnection {
     }
 
     public static boolean insertInquiry(String inquiryname, int inspirationid, String email, long mobileNo,
-            int levelid, String address, String followupDetails) throws Exception {
+            int levelid, String address, String followupDetails,
+            String nationality, String fname, String mname, String dob, long telOther, String image,
+            String gender, String inspiration, String comfortability) throws Exception {
 
         boolean insertStatus = Boolean.FALSE;
         Connection connection;
+        InputStream fis = null;
+
         try {
+            if (image != null && !image.isEmpty()) {
+                File imageFile = new File(image);
+                fis = new FileInputStream(imageFile);
+            }
             connection = DatabaseConnection.createConnection();
             Statement statement = connection.createStatement();
             String queryInsertInquiry = "INSERT into inquiry (firstname, inspiration_id, inquiry_date, email, mobile"
-                    + ", level_id, address_line1) "
+                    + ", level_id, address_line1, nationality, fname, mname, dob, telOther, photo, gender, inspiration, comfortability) "
                     + "VALUES ('" + inquiryname + "'," + inspirationid + ",'" + FORMATTER.format(new Date()) + "', '" + email + "', " + mobileNo + ","
-                    + levelid + ", '" + address + "')";
+                    + levelid + ", '" + address + "', '"+ nationality + "', '"+ fname+ "', '" + mname + "', '"+ FORMATTER.parse(dob)+ "', "+ telOther+ ", '" + fis + "', '" +
+                                gender + "', '" + inspiration + "', '" + comfortability + "' )";
             int records = statement.executeUpdate(queryInsertInquiry);
             if (records > 0) {
                 statement = connection.createStatement();
@@ -212,7 +224,8 @@ public class DatabaseConnection {
     }
 
     public static boolean updateInquiry(int inquiry_id, String inquiryname, int inspirationid, String email, long mobileNo,
-            int levelid, String address, String followupDetails) throws Exception {
+            int levelid, String address, String followupDetails, String nationality, String fname, String mname, String dob, long telOther, String image,
+            String gender, String inspiration, String comfortability) throws Exception {
 
         boolean updateStatus = Boolean.FALSE;
         Connection connection;
@@ -230,7 +243,7 @@ public class DatabaseConnection {
                     followup_id = rs.getInt(1);
                 }
                 rs.close();
-                if (followup_id > 0) {
+                if (followup_id > 0 && followupDetails != null && !followupDetails.isEmpty()) {
                     statement = connection.createStatement();
                     String queryUpdateFollowupDetails = "UPDATE followupdetails SET followup_details = '" + followupDetails + "' "
                             + " where followup_id = " + followup_id;
