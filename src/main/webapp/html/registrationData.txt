@@ -1,0 +1,1 @@
+{"firstname":"Sarvesh","inquiry_id":28,"gender":0,"label_color":"#FFFF00","level_id":1,"mobile":9312181442,"inquirystatus_id":1,"inspiration_id":1,"telephone":0,"address_line1":"gna2","label_text":"OPEN","followup_details":"test","tag":"View / Update your registration information here!","email":"sarvesh.new@gmail.com","status":true,"inquiry_date":"2018-12-15"}
